@@ -1,0 +1,29 @@
+package com.agencia;
+
+import com.agencia.database.DatabaseConection;
+import com.agencia.model.Cliente;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		DatabaseConection.createConnection();
+		Cliente cliente = new Cliente();
+		cliente.setId_Cliente(1);
+		cliente.setCPF("77777777");
+		cliente.setNome("Nats");
+		cliente.setTelefone("999999999");
+		cliente.setEmail("nats@exemplo.com");
+		cliente.setSenha("123");
+		cliente.setDataNascimento("04/12/1995");
+		cliente.setEstado("Sao Paulo");
+		cliente.setCidade("SP");
+		cliente.setEndereco("Rua 2");
+		cliente.setEndereco("Rua 2");
+		cliente.setEnderecoNumero("22");
+		cliente.setComplemento("Ap 4");
+		
+		
+		System.out.println(cliente.toString());
+	}
+}

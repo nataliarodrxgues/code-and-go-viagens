@@ -1,0 +1,144 @@
+package com.agencia.model;
+
+import java.time.LocalDateTime;
+
+public class Pedidos {
+
+	private int id_Pedidos;
+	private String id_Cliente;
+	private String tipoDestino;
+	private String statusPedido;
+	private String TipoPromocao;
+	private LocalDateTime dataIda;
+	private LocalDateTime dataVolta;
+	private String valorCompra;
+
+	
+
+public Pedidos() {
+	super();
+	
+	
+}
+
+
+public Pedidos(String id_Cliente, String tipoDestino, String statusPedido, String tipoPromocao, LocalDateTime dataIda,
+		LocalDateTime dataVolta, String valorCompra) {
+	super();
+	this.id_Cliente = id_Cliente;
+	this.tipoDestino = tipoDestino;
+	this.statusPedido = statusPedido;
+	this.TipoPromocao = tipoPromocao;
+	this.dataIda = dataIda;
+	this.dataVolta = dataVolta;
+	this.valorCompra = valorCompra;
+}
+
+
+
+public int getId_Pedidos() {
+	return id_Pedidos;
+}
+
+
+
+public void setId_Pedidos(int id_Pedidos) {
+	this.id_Pedidos = id_Pedidos;
+}
+
+
+
+public String getId_Cliente() {
+	return id_Cliente;
+}
+
+
+
+public void setId_Cliente(String id_Clientes) {
+	this.id_Cliente = id_Clientes;
+}
+
+
+
+public String getTipoDestino() {
+	return tipoDestino;
+}
+
+
+
+public void setTipoDestino(String tipoDestino) {
+	this.tipoDestino = tipoDestino;
+}
+
+
+
+public String getStatusPedido() {
+	return statusPedido;
+}
+
+
+
+public void setStatusPedido(String statusPedido) {
+	this.statusPedido = statusPedido;
+}
+
+
+
+public String getTipoPromocao() {
+	return TipoPromocao;
+}
+
+
+
+public void setTipoPromocao(String tipoPromocao) {
+	TipoPromocao = tipoPromocao;
+}
+
+
+
+public LocalDateTime getDataIda() {
+	return dataIda;
+}
+
+
+
+public void setDataIda(LocalDateTime dataIda) {
+	this.dataIda = dataIda;
+}
+
+
+
+public LocalDateTime getDataVolta() {
+	return dataVolta;
+}
+
+
+
+public void setDataVolta(LocalDateTime dataVolta) {
+	this.dataVolta = dataVolta;
+}
+
+
+
+public String getValorCompra() {
+	return valorCompra;
+}
+
+
+
+public void setValorCompra(String valorCompra) {
+	this.valorCompra = valorCompra;
+}
+
+
+
+@Override
+public String toString() {
+	return "Pedidos [id_Pedidos=" + id_Pedidos + ", id_Cliente=" + id_Cliente + ", tipoDestino=" + tipoDestino
+			+ ", statusPedido=" + statusPedido + ", TipoPromocao=" + TipoPromocao + ", dataIda=" + dataIda
+			+ ", dataVolta=" + dataVolta + ", valorCompra=" + valorCompra + "]";
+}
+
+
+	
+}

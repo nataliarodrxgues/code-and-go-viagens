@@ -1,0 +1,116 @@
+package com.agencia.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.agencia.model.Cliente;
+import com.agencia.model.Pedidos;
+import com.agencia.utils.Colors;
+
+public class PedidosDAO {
+	
+	private static String sql;
+	private final Connection connection;
+	public PedidosDAO(Connection connection) {
+		this.connection = connection;
+	}
+	
+		// CREATE
+		
+		 public void createPedidos(Pedidos pedidos) {
+			 sql = "INSERT INTO cliente id_Cliente, tipoDestino, statusPedido, TipoPromocao, valorCompra) VALUES (?,?,?,?,?)";
+				try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+					 stmt.setString(1, pedidos.getId_Cliente());
+					 stmt.setString(2, pedidos.getTipoDestino());
+					 stmt.setString(3, pedidos.getStatusPedido());
+					 stmt.setString(4, pedidos.getTipoPromocao());	
+					 stmt.setString(5, pedidos.getValorCompra());	 
+
+						stmt.executeUpdate();
+						System.out.println(Colors.GREEN.get() + "Pedido criado com sucesso\n" + Colors.RESET.get() + "Id do Cliente: "
+								+ pedidos.getId_Cliente() + "\nStatus do Pedido: " + pedidos.getStatusPedido());
+					} catch (SQLException e) {
+						System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel criar o cliente." + Colors.RESET.get() +  "Mensagem: " + e.getMessage());
+
+					}
+				}
+
+		 
+			// READ
+		 
+			public void readAllPedidos() {
+				sql = "SELECT * FROM pedidos";
+				try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+					ResultSet r = stmt.executeQuery();
+					while (r.next()) {
+						Pedidos pedidos = new Pedidos();
+						pedidos.setId_Pedido(r.getInt("id_Pedido"));
+						pedidos.setId_Cliente(r.getInt("id_Cliente"));
+						pedidos.settipoDestino(r.getString("Tipo de Destino"));
+						pedidos.setstatusPedido(r.getString("Status do Pedido"));
+						pedidos.setTelefoneCliente(r.getString("Telefone"));
+						pedidos.setEmailCliente(r.getString("Email"));
+						pedidos.setSenhaCliente(r.getString("Senha"));
+						pedidos.setEnderecoCliente(r.getString("Endereço"));
+						
+
+			System.out.printf("ID: %d\n CPF: %s\\n Nome: %s\n Telefone: %s\\n\" Email: %s\n Senha: %s\n Endereco: %s\n", cliente.getId_Cliente(),
+			cliente.getCPFCliente(), cliente.getNomeCliente(), cliente.getTelefoneCliente(), cliente.getEmailCliente(), cliente.getSenhaCliente(), cliente.getEnderecoCliente());
+					}
+					if (!r.next()) {
+						System.out.println(Colors.PURPLE_BOLD_BRIGHT.get() + "NAO HA DADOS" + Colors.RESET.get());
+					}
+
+				} catch (SQLException e) {
+					System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel acessar as informacoes." + Colors.RESET.get()
+							+ "Mensagem: " + e.getMessage());
+				}
+			}
+
+			
+			// UPDATE 
+
+			public void updateClient(Cliente cliente) {
+				sql = "UPDATE cliente SET cPF = ? , Nome = ?, Telefone = ?, Email = ?, Senha = ? , DataNascimento = ?, Estado  = ?, Cidade = ?, Endereco = ?, EnderecoNumero = ?, Complemento = ? WHERE id_Cliente = ?";
+				try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+					stmt.setString(1, cliente.getCPFCliente());
+					stmt.setString(2, cliente.getNomeCliente());
+					stmt.setString(3, cliente.getTelefoneCliente());
+					stmt.setString(4, cliente.getEmailCliente());
+					stmt.setString(5, cliente.getSenhaCliente());
+					stmt.setString(6, cliente.getEnderecoCliente());
+			
+
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Cliente atualizado com sucesso\n" + Colors.RESET.get() + "Nome: "
+						+ cliente.getNomeCliente() + "\nCPF: " + cliente.getCPFCliente());
+
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel atualizar o cliente." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+			}
+		}
+			
+			
+
+			// DELETE
+			
+			public void deleteClient(int id) {
+				sql = "DELETE FROM cliente WHERE idCliente = ?";
+				try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+					stmt.setInt(1, id);
+
+					stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Cliente deletado com sucesso!" + Colors.RESET.get());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "Nao foi possivel deletar o cliente." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+			}
+		}
+		}
+
+	}
+
+

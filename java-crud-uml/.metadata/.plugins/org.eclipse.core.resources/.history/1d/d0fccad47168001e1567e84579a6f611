@@ -1,0 +1,13 @@
+package com.agencia;
+
+import com.agencia.database.DatabaseConection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		DatabaseConection.createConnection();
+		
+ 
+	}
+}

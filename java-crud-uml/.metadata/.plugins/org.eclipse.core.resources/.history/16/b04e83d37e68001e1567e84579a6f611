@@ -1,0 +1,36 @@
+package com.agencia.database;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import com.agencia.utils.Colors;
+
+public class DatabaseConection {
+	
+	private static final String url = "jdbc:mysql://localhost:3306/codeandgo";
+	private static final String user = "root";
+	private static final String password = "161312";
+
+	public static Connection createConnection() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println(Colors.GREEN + "Driver encontrado!" + Colors.RESET);
+
+			} catch (ClassNotFoundException e) {
+				System.out.printf(Colors.RED + "Driver nao encontrado! Mensagem: " + Colors.RESET);
+			}
+
+			try {
+			Connection connection = DriverManager.getConnection(url, user, password);
+			System.out.println(Colors.GREEN + "Conectado com sucesso!" + Colors.RESET);
+
+			return connection;
+			} catch (SQLException e) {
+				System.out.printf(Colors.RED + " Nao foi possivel conectar ao banco! Mensagem: " + e.getMessage() + Colors.RESET);
+				return null;
+			}
+
+		}
+	}
+

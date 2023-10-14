@@ -1,0 +1,143 @@
+package com.agencia.model;
+
+import java.time.LocalDateTime;
+
+public class Pedido {
+
+	private int id_Pedido;
+	private int id_Cliente;
+	private String tipoDestino;
+	private String tipoPromo;
+	private String statusPedido;
+	private LocalDateTime dataIda;
+	private LocalDateTime dataVolta;
+	private int valorCompra;
+	
+
+
+public Pedido() {
+	super();
+	
+}
+
+
+
+public Pedido(int idCliente, String tipoDestino, String tipoPromo, String statusPedido, LocalDateTime dataIda,
+		LocalDateTime dataVolta, int valorCompra) {
+	super();
+	this.idCliente = idCliente;
+	this.tipoDestino = tipoDestino;
+	this.tipoPromo = tipoPromo;
+	this.statusPedido = statusPedido;
+	this.dataIda = dataIda;
+	this.dataVolta = dataVolta;
+	this.valorCompra = valorCompra;
+}
+
+
+
+public int getId_Pedido() {
+	return id_Pedido;
+}
+
+
+
+public void setId_Pedido(int id_Pedido) {
+	this.id_Pedido = id_Pedido;
+}
+
+
+
+public int getIdCliente() {
+	return idCliente;
+}
+
+
+
+public void setIdCliente(int idCliente) {
+	this.idCliente = idCliente;
+}
+
+
+
+public String getTipoDestino() {
+	return tipoDestino;
+}
+
+
+
+public void setTipoDestino(String tipoDestino) {
+	this.tipoDestino = tipoDestino;
+}
+
+
+
+public String getTipoPromo() {
+	return tipoPromo;
+}
+
+
+
+public void setTipoPromo(String tipoPromo) {
+	this.tipoPromo = tipoPromo;
+}
+
+
+
+public String getStatusPedido() {
+	return statusPedido;
+}
+
+
+
+public void setStatusPedido(String statusPedido) {
+	this.statusPedido = statusPedido;
+}
+
+
+
+public LocalDateTime getDataIda() {
+	return dataIda;
+}
+
+
+
+public void setDataIda(LocalDateTime dataIda) {
+	this.dataIda = dataIda;
+}
+
+
+
+public LocalDateTime getDataVolta() {
+	return dataVolta;
+}
+
+
+
+public void setDataVolta(LocalDateTime dataVolta) {
+	this.dataVolta = dataVolta;
+}
+
+
+
+public int getValorCompra() {
+	return valorCompra;
+}
+
+
+
+public void setValorCompra(int valorCompra) {
+	this.valorCompra = valorCompra;
+}
+
+
+
+@Override
+public String toString() {
+	return "Pedido [id_Pedido=" + id_Pedido + ", idCliente=" + idCliente + ", tipoDestino=" + tipoDestino
+			+ ", tipoPromo=" + tipoPromo + ", statusPedido=" + statusPedido + ", dataIda=" + dataIda + ", dataVolta="
+			+ dataVolta + ", valorCompra=" + valorCompra + "]";
+}
+
+}
+

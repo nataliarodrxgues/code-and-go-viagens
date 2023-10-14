@@ -1,0 +1,110 @@
+package com.agencia.dao;
+
+import java.security.Timestamp;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.agencia.model.Pedidos;
+
+public class PedidosDAO {
+	
+	private static String sql;
+	private final Connection connection;
+	public PedidosDAO(Connection connection) {
+		this.connection = connection;
+	}
+
+	// CREATE
+		public void createPedidos(Pedidos pedidos) {
+			sql = "INSERT INTO Pedidos (id_pedido, id_cliente, tipoDestino, tipoPromo, statusPedido, dataIda, dataVolta, valorCompra) VALUES (?,?,?,?,?,?,?,?)";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				stmt.setInt(1, pedidos.getId_Pedido());
+				stmt.setInt(2, pedidos.getIdCliente());
+				stmt.setString(3, pedidos.getTipoDestino());
+				stmt.setString(4, pedidos.getTipoPromo());
+				stmt.setString(5, pedidos.getStatusPedido());
+				stmt.setInt(6, pedidos.getValorCompra());
+				
+				// Lidando com Datas
+				
+				Timestamp sqlDataEHorario = Timestamp.valueOf(pedidos.getDataIda());
+				Timestamp sqlDataEHorario = Timestamp.valueOf(pedidos.getDataVolta());
+
+				stmt.executeUpdate();
+				System.out.println("Pet criado com sucesso!" + pedidos.toString());
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+
+		}
+
+		// READ
+		public void readAllPedidos() {
+			sql = "SELECT * FROM pedidos";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				ResultSet r = stmt.executeQuery();
+				while (r.next()) {
+					Pedidos pedidos = new Pedidos();
+					pedidos.setId_Pedidos(r.getInt("IdPedidos"));
+					veterinario.setNomeVeterinario(r.getString("nomeVeterinario"));
+					veterinario.setCRMV(r.getString("CRMV"));
+					veterinario.setEspecialidade(r.getString("especialidade"));
+
+					veterinario.setHorariosDisponiveis(r.getTimestamp("horariosDisponiveis").toLocalDateTime());
+
+					System.out.printf("ID: %d\n Nome: %s\n CRMV: %s\n Horario Disponivel: %s\n", veterinario.getIdVeterinario(),
+							veterinario.getNomeVeterinario(), veterinario.getCRMV(), veterinario.getHorariosDisponiveis());
+
+				}
+		
+
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel acessar as informacoes." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+			}
+		}
+		
+		
+		// UPDATE 
+		public void updateVeterinario(Veterinario veterinario) {
+			sql = "UPDATE veterinario SET nomeVeterinario = ?, CMRV = ?, especialidade = ?, horariosDisponiveis = ? WHERE idVeterinario = ?";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				stmt.setString(1, veterinario.getNomeVeterinario());
+				stmt.setString(2, veterinario.getCRMV());
+				stmt.setString(3, veterinario.getEspecialidade());
+				stmt.setInt(5, veterinario.getIdVeterinario());
+				// Lidando com Datas
+				Timestamp sqlDataEHorario = Timestamp.valueOf(veterinario.getHorariosDisponiveis());
+				stmt.setTimestamp(4, sqlDataEHorario);
+				
+
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Veterinario Atualizado com sucesso\n" + Colors.RESET.get() + "Nome: "
+						+ veterinario.getNomeVeterinario() + "\nCRMV: " + veterinario.getCRMV());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel criar o veterinario." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+
+			}
+		}
+		
+		
+		// DELETE 
+		public void deleteVeterinario(int id) {
+			sql = "DELETE FROM veterinario WHERE idVeterinario = ?";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				stmt.setInt(1, id);
+
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Veterinario deletado com sucesso!" + Colors.RESET.get());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "Nao foi possivel deletar o veterinario." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+			}
+		}
+
+		
+		
+	}

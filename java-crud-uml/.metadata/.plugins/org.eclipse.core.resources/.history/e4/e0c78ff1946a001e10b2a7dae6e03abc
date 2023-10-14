@@ -1,0 +1,113 @@
+package com.agencia.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.agencia.model.Cliente;
+import com.agencia.utils.Colors;
+
+public class ClienteDAO {
+	
+	private static String sql;
+	private final Connection connection;
+	public ClienteDAO(Connection connection) {
+		this.connection = connection;
+	}
+ 	
+	
+	// CREATE
+	
+ public void createCliente(Cliente cliente) {
+	 sql = "INSERT INTO cliente CPF, Nome, Telefone, Email, Senha, Endereco) VALUES (?,?,?,?,?, ?)";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			 stmt.setInt(1, cliente.getCPFCliente());
+			 stmt.setString(2, cliente.getNomeCliente());
+			 stmt.setInt(3, cliente.getTelefoneCliente());
+			 stmt.setString(4, cliente.getEmailCliente());	
+			 stmt.setInt(5, cliente.getSenhaCliente());	 
+			 stmt.setString(6, cliente.getEnderecoCliente());
+			
+		
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Cliente criado com sucesso\n" + Colors.RESET.get() + "Nome: "
+						+ cliente.getNomeCliente() + "\nCPF: " + cliente.getCPFCliente());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel criar o cliente." + Colors.RESET.get() +  "Mensagem: " + e.getMessage());
+
+			}
+		}
+
+ 
+	// READ
+ 
+	public void readAllCliente() {
+		sql = "SELECT * FROM cliente";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			ResultSet r = stmt.executeQuery();
+			while (r.next()) {
+				Cliente cliente = new Cliente();
+				cliente.setId_Cliente(r.getInt("id_Cliente"));
+				cliente.setCPFCliente(r.getString("Cpf"));
+				cliente.setNomeCliente(r.getString("Nome"));
+				cliente.setTelefoneCliente(r.getString("Telefone"));
+				cliente.setEmailCliente(r.getString("Email"));
+				cliente.setSenhaCliente(r.getString("Senha"));
+				cliente.setEnderecoCliente(r.getString("Endereço"));
+				
+
+	System.out.printf("ID: %d\n CPF: %s\\n Nome: %s\n Telefone: %s\\n\" Email: %s\n Senha: %s\n Endereco: %s\n", cliente.getId_Cliente(),
+	cliente.getCPFCliente(), cliente.getNomeCliente(), cliente.getTelefoneCliente(), cliente.getEmailCliente(), cliente.getSenhaCliente(), cliente.getEnderecoCliente());
+			}
+			if (!r.next()) {
+				System.out.println(Colors.PURPLE_BOLD_BRIGHT.get() + "NAO HA DADOS" + Colors.RESET.get());
+			}
+
+		} catch (SQLException e) {
+			System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel acessar as informacoes." + Colors.RESET.get()
+					+ "Mensagem: " + e.getMessage());
+		}
+	}
+
+	
+	// UPDATE 
+
+	public void updateCliente(Cliente cliente) {
+		sql = "UPDATE cliente SET cPF = ? , Nome = ?, Telefone = ?, Email = ?, Senha = ? , DataNascimento = ?, Estado  = ?, Cidade = ?, Endereco = ?, EnderecoNumero = ?, Complemento = ? WHERE id_Cliente = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setInt(1, cliente.getCPFCliente());
+			stmt.setString(2, cliente.getNomeCliente());
+			stmt.setInt(3, cliente.getTelefoneCliente());
+			stmt.setString(4, cliente.getEmailCliente());
+			stmt.setInt(5, cliente.getSenhaCliente());
+			stmt.setString(6, cliente.getEnderecoCliente());
+	
+
+		stmt.executeUpdate();
+		System.out.println(Colors.GREEN.get() + "Cliente atualizado com sucesso\n" + Colors.RESET.get() + "Nome: "
+				+ cliente.getNomeCliente() + "\nCPF: " + cliente.getCPFCliente());
+
+	} catch (SQLException e) {
+		System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel atualizar o cliente." + Colors.RESET.get()
+				+ "Mensagem: " + e.getMessage());
+	}
+}
+	
+	
+
+	// DELETE
+	
+	public void deleteCliente(int id) {
+		sql = "DELETE FROM cliente WHERE idCliente = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+
+			stmt.executeUpdate();
+		System.out.println(Colors.GREEN.get() + "Cliente deletado com sucesso!" + Colors.RESET.get());
+	} catch (SQLException e) {
+		System.out.println(Colors.RED.get() + "Nao foi possivel deletar o cliente." + Colors.RESET.get()
+				+ "Mensagem: " + e.getMessage());
+	}
+}
+}

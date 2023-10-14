@@ -1,0 +1,120 @@
+package com.agencia.dao;
+
+import java.security.Timestamp;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.agencia.model.Pedidos;
+import com.agencia.utils.Colors;
+
+public class PedidosDAO {
+	
+	private static String sql;
+	private final Connection connection;
+	public PedidosDAO(Connection connection) {
+		this.connection = connection;
+	}
+
+	// CREATE
+		public void createPedidos(Pedidos pedidos) {
+			sql = "INSERT INTO Pedidos (id_pedido, id_cliente, tipoDestino, tipoPromo, statusPedido, valorCompra, dataIda, dataVolta) VALUES (?,?,?,?,?,?,?,?)";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				stmt.setInt(1, pedidos.getId_Pedidos());
+				stmt.setString(2, pedidos.getId_Cliente());
+				stmt.setString(3, pedidos.getTipoDestino());
+				stmt.setString(4, pedidos.getTipoPromocao());
+				stmt.setString(5, pedidos.getStatusPedido());
+				stmt.setString(6, pedidos.getValorCompra());
+				
+				// Trabalhando com datas 
+				java.sql.Timestamp sqlDataIda = Timestamp.valueOf(pedidos.getDataIda());
+				stmt.setTimestamp(7, sqlDataIda);
+				java.sql.Timestamp sqlDataVolta = Timestamp.valueOf(pedidos.getDataVolta());
+				stmt.setTimestamp(8, sqlDataVolta);
+
+
+				stmt.executeUpdate();
+				System.out.println("Pedido criado com sucesso!" + pedidos.toString());
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+
+		}
+
+		// READ
+		public void readAllPedidos() {
+			sql = "SELECT * FROM pedidos";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				ResultSet r = stmt.executeQuery();
+				while (r.next()) {
+					Pedidos pedidos = new Pedidos();
+			pedidos.setId_Pedidos(r.getInt("IdPedidos"));
+			pedidos.setId_Cliente(r.getString("IdCliente"));
+			pedidos.setTipoDestino(r.getString("Tipo de Destino"));
+			pedidos.setTipoPromocao(r.getString("Tipo de Promoção"));
+			pedidos.setStatusPedido(r.getString("Tipo de Promoção"));
+			pedidos.setStatusPedido(r.getString("Status do Pedido"));
+			pedidos.setValorCompra(r.getString("Valor da Compra"));
+					
+				
+
+		pedidos.setDataIda(r.getTimestamp("dataIda").toLocalDateTime());
+
+			System.out.printf("ID: %d\n ID Cliente: %s\n Tipo de Destino: %s\n Tipo de Promoção: %s\n Tipo de Promoção: %s\\n Status do Pedido: %s\\n Valor da Compra: %s\\\\n Data Ida: %s\\\\n Data Volta: %s\\\\n", 
+			pedidos.getId_Pedidos(),pedidos.getId_Cliente(), pedidos.getTipoDestino(), pedidos.getValorCompra());
+
+				}
+		
+
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel acessar as informacoes." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+			}
+		}
+		
+		
+		// UPDATE 
+		public void updatePedidos(Pedidos pedidos) {
+			sql = "UPDATE pedidos SET id_cliente = ?, tipoDestino = ?, tipoPromocao = ?, statusPedido = ?, dataIda = ?, dataVolta = ?, valorCompra = ? WHERE id_pedido = ?";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				stmt.setString(1, pedidos.getId_Cliente());
+				stmt.setString(2, pedidos.getTipoDestino());
+				stmt.setString(3, pedidos.getTipoPromocao());
+				stmt.setString(5, pedidos.getStatusPedido());
+				stmt.setString(5, pedidos.getValorCompra());
+				
+				// Lidando com Datas
+				Timestamp sqlDataEHorario = Timestamp.valueOf(pedidos.getDataIda());
+				stmt.setTimestamp(4, sqlDataEHorario);
+				
+
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Pedido Atualizado com sucesso\n" + Colors.RESET.get() + "Nome: "
+						+ pedidos.getId_Cliente() + "\nStatus: " + pedidos.getStatusPedido());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel criar o veterinario." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+
+			}
+		}
+		
+		
+		// DELETE 
+		public void deletePedido(int id) {
+			sql = "DELETE FROM veterinario WHERE idPedido = ?";
+			try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+				stmt.setInt(1, id);
+
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Pedido deletado com sucesso!" + Colors.RESET.get());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "Nao foi possivel deletar o pedido." + Colors.RESET.get()
+						+ "Mensagem: " + e.getMessage());
+			}
+		}
+
+		
+		
+	}

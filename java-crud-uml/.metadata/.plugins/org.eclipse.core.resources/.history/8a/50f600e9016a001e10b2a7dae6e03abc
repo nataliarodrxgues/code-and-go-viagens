@@ -1,0 +1,52 @@
+package com.agencia;
+
+import java.io.PrintStream;
+import java.util.Scanner;
+
+import com.agencia.menus.ClienteIO;
+import com.agencia.menus.ContatoIO;
+import com.agencia.menus.DestinosIO;
+import com.agencia.menus.MenuIO;
+import com.agencia.menus.PedidosIO;
+import com.agencia.menus.PromocoesIO;
+import com.agencia.utils.Colors;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		      Scanner scanner = new Scanner(System.in);
+		      boolean option = false;
+
+		      int option1;
+		      do {
+		         option1 = MenuIO.menu(scanner);
+		         switch (option1) {
+		            case 1:
+		               ClienteIO.SubMenuCliente(scanner);
+		               break;
+		            case 2:
+		               PedidosIO.SubMenuPedidos(scanner);
+		               break;
+		            case 3:
+		               DestinosIO.SubMenuDestinos(scanner);
+		               break;
+		            case 4:
+		               PromocoesIO.SubMenuPromocoes(scanner);
+		               break;
+		            case 5:
+			           ContatoIO.SubMenuContato(scanner);
+			            break;
+		            default:
+		               PrintStream var10000 = System.out;
+		               String var10001 = Colors.RED.get();
+		               var10000.println(var10001 + "Digite uma opcao valida!" + Colors.RED.get());
+		         }
+		      } while(option1 != 6);
+
+		      scanner.close();
+		   }
+		}
+		
+	
+	

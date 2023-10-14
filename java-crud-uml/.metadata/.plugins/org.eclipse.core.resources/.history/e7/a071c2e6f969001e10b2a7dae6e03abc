@@ -1,0 +1,114 @@
+package com.agencia.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.agencia.model.Cliente;
+import com.agencia.model.Contato;
+import com.agencia.utils.Colors;
+
+
+public class ContatoDAO {
+	private static String sql;
+
+	private final Connection connection;
+
+	public ContatoDAO(Connection connection) {
+		this.connection = connection;
+	}
+
+	// CREATE
+	
+ public void createContato(Contato contato) {
+	 sql = "INSERT INTO cliente Assunto, Nome, Email, Mensagem) VALUES (?,?,?,?)";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			 Object Contato;
+			stmt.setString(1, contato.getAssunto());
+			 stmt.setString(2, contato.getNomeContato());
+			 stmt.setString(3, contato.getEmailContato());
+			 stmt.setString(4, contato.getMensagem());
+			
+		
+				stmt.executeUpdate();
+				com.agencia.model.Contato cliente;
+				System.out.println(Colors.GREEN.get() + "Contato feito com sucesso\n" + Colors.RESET.get() + "Nome: "
+						+ contato.getNomeContato() + "\nAssunto: " + contato.getAssunto());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel entrar em contato." + Colors.RESET.get() +  "Mensagem: " + e.getMessage());
+
+			}
+		}
+
+ 
+	// READ
+ 
+	public void readAllContatos() {
+		sql = "SELECT * FROM contato";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			ResultSet r = stmt.executeQuery();
+			while (r.next()) {
+				Contato contato = new Contato();
+				contato.setId_Contato(r.getInt("id_Contato"));
+				contato.setAssunto(r.getString("Assunto"));
+				contato.setNomeContato(r.getString("Nome"));
+				contato.setEmailContato(r.getString("Email"));
+				contato.setMensagem(r.getString("Mensagem"));
+				
+				
+
+	System.out.printf("ID: %d\n Assunto: %s\\n Nome: %s\n Email: %s\\n\" Mensagem: %s\n",
+			contato.getId_Contato(), contato.getAssunto(), contato.getNomeContato(), contato.getEmailContato(),contato.getMensagem());
+			}
+			if (!r.next()) {
+				System.out.println(Colors.PURPLE_BOLD_BRIGHT.get() + "NAO HA DADOS" + Colors.RESET.get());
+			}
+
+		} catch (SQLException e) {
+			System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel acessar as informacoes." + Colors.RESET.get()
+					+ "Mensagem: " + e.getMessage());
+		}
+	}
+
+	
+	// UPDATE 
+
+	public void updateContato(Contato contato) {
+		sql = "UPDATE contato SET Assunto = ? , Nome = ?, Email = ?, Mensagem = ? WHERE id_Contato = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setString(1, contato.getAssunto());
+			stmt.setString(2, contato.getNomeContato());
+			stmt.setString(3, contato.getEmailContato());
+			stmt.setString(4, contato.getMensagem());
+		
+	
+
+		stmt.executeUpdate();
+		System.out.println(Colors.GREEN.get() + "Contato atualizado com sucesso\n" + Colors.RESET.get() + "Nome: "
+				+ contato.getNomeContato() + "\nAssunto: " + contato.getAssunto());
+
+	} catch (SQLException e) {
+		System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel atualizar o cliente." + Colors.RESET.get()
+				+ "Mensagem: " + e.getMessage());
+	}
+}
+	
+	
+
+	// DELETE
+	
+	public void deleteContato(int id) {
+		sql = "DELETE FROM cliente WHERE id_Contato = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+
+			stmt.executeUpdate();
+		System.out.println(Colors.GREEN.get() + "Contato deletado com sucesso!" + Colors.RESET.get());
+	} catch (SQLException e) {
+		System.out.println(Colors.RED.get() + "Nao foi possivel deletar o contato." + Colors.RESET.get()
+				+ "Mensagem: " + e.getMessage());
+	}
+}
+}
+	

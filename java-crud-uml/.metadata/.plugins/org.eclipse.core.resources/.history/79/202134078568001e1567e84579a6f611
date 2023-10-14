@@ -1,0 +1,123 @@
+package com.agencia.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.agencia.model.Cliente;
+import com.agencia.utils.Colors;
+
+public class ClienteDAO {
+	
+	private static String sql;
+	private final Connection connection;
+	public ClienteDAO(Connection connection) {
+		this.connection = connection;
+	}
+ 	
+	// CREATE
+	
+ public void createCliente(Cliente cliente) {
+	 sql = "INSERT INTO cliente cPF, Nome, Telefone, Email, Senha, DataNascimento, Estado, Cidade, Endereco, EnderecoNumero, Complemento) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			 stmt.setString(1, cliente.getCPF());
+			 stmt.setString(2, cliente.getNome());
+			 stmt.setString(3, cliente.getTelefone());
+			 stmt.setString(4, cliente.getEmail());	
+			 stmt.setString(5, cliente.getSenha());	 
+			 stmt.setString(6, cliente.getDataNascimento());
+			 stmt.setString(7, cliente.getEstado());
+			 stmt.setString(8, cliente.getCidade());
+			 stmt.setString(9, cliente.getEndereco());
+			 stmt.setString(10, cliente.getEnderecoNumero());
+			 stmt.setString(11, cliente.getComplemento());	
+		
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN.get() + "Cliente criado com sucesso\n" + Colors.RESET.get() + "Nome: "
+						+ cliente.getNome() + "\nCPF: " + cliente.getCPF());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel criar o cliente." + Colors.RESET.get() +  "Mensagem: " + e.getMessage());
+
+			}
+		}
+
+	// READ
+
+	public void readAllClients() {
+		sql = "SELECT * FROM cliente";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			ResultSet r = stmt.executeQuery();
+			while (r.next()) {
+				Cliente cliente = new Cliente();
+				cliente.setIdCliente(r.getInt("id_Cliente"));
+				cliente.setCpfCliente(r.getString("Cpf"));
+				cliente.setNomeCliente(r.getString("Nome"));
+				cliente.setCpfCliente(r.getString("Telefone"));
+				cliente.setCpfCliente(r.getString("Email"));
+				cliente.setCpfCliente(r.getString("Senha"));
+				cliente.setCpfCliente(r.getString("DataNascimento"));
+				cliente.setEnderecoCliente(r.getString("Estado"));
+				cliente.setEnderecoCliente(r.getString("Cidade"));
+				cliente.setEnderecoCliente(r.getString("Endereco"));
+				cliente.setEnderecoCliente(r.getString("EnderecoNumero"));
+				cliente.setTelefone(r.getString("Complemento"));
+
+				System.out.printf("ID: %d\n Nome: %s\n CPF: %s\n Endereco: %s\n Telefone: %s\n", cliente.getId_Cliente(),
+						cliente.getNome(), cliente.getCPF(), cliente.getEndereco(),
+						cliente.getTelefone());
+
+			}
+			if (!r.next()) {
+				System.out.println(Colors.PURPLE_BOLD_BRIGHT.get() + "NAO HA DADOS" + Colors.RESET.get());
+			}
+
+		} catch (SQLException e) {
+			System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel acessar as informacoes." + Colors.RESET.get()
+					+ "Mensagem: " + e.getMessage());
+		}
+	}
+
+	// UPDATE 
+
+		
+	public void updateClient(Cliente cliente) {
+		sql = "UPDATE cliente SET cPF = ? , Nome = ?, Telefone = ?, Email = ?, Senha = ? , DataNascimento = ?, Estado  = ?, Cidade = ?, Endereco = ?, EnderecoNumero = ?, Complemento = ? WHERE id_Cliente = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setString(1, cliente.getCPF());
+			stmt.setString(2, cliente.getNome());
+			stmt.setString(3, cliente.getTelefone());
+			stmt.setString(4, cliente.getEmail());
+			stmt.setString(5, cliente.getSenha());
+			stmt.setString(6, cliente.getDataNascimento());
+			stmt.setString(7, cliente.getEstado());
+			stmt.setString(8, cliente.getCidade());
+			stmt.setString(9, cliente.getEndereco());
+			stmt.setString(10, cliente.getEnderecoNumero());
+			stmt.setString(11, cliente.getComplemento());
+			stmt.setInt(12, cliente.getId_Cliente());
+
+
+		stmt.executeUpdate();
+		System.out.println(Colors.GREEN.get() + "Cliente atualizado com sucesso\n" + Colors.RESET.get() + "Nome: "
+				+ cliente.getNome() + "\nCPF: " + cliente.getCPF());
+
+	} catch (SQLException e) {
+		System.out.println(Colors.RED.get() + "[LOG] Nao foi possivel atualizar o cliente." + Colors.RESET.get()
+				+ "Mensagem: " + e.getMessage());
+	}
+}
+
+// DELETE
+	public void deleteClient(int id) {
+		sql = "DELETE FROM cliente WHERE idCliente = ?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+
+			stmt.executeUpdate();
+		System.out.println(Colors.GREEN.get() + "Cliente deletado com sucesso!" + Colors.RESET.get());
+	} catch (SQLException e) {
+		System.out.println(Colors.RED.get() + "Nao foi possivel deletar o cliente." + Colors.RESET.get()
+				+ "Mensagem: " + e.getMessage());
+	}
+}
+}

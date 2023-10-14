@@ -1,0 +1,98 @@
+package com.agencia.model;
+
+public class Promocoes {
+	
+	private int id_promo;
+	private String promocaoViagens;
+	private String promocaoPacotes;
+	private String statusPedido;
+	private String codigoReserva;
+	private String codigoPacotes;
+	
+	
+	public Promocoes() {
+		super();
+		
+	}
+
+
+	public Promocoes(int id_promo, String promocaoViagens, String promocaoPacotes, String statusPedido,
+			String codigoReserva, String codigoPacotes) {
+		super();
+		this.id_promo = id_promo;
+		this.promocaoViagens = promocaoViagens;
+		this.promocaoPacotes = promocaoPacotes;
+		this.statusPedido = statusPedido;
+		this.codigoReserva = codigoReserva;
+		this.codigoPacotes = codigoPacotes;
+	}
+
+
+	public int getId_promo() {
+		return id_promo;
+	}
+
+
+	public void setId_promo(int id_promo) {
+		this.id_promo = id_promo;
+	}
+
+
+	public String getPromocaoViagens() {
+		return promocaoViagens;
+	}
+
+
+	public void setPromocaoViagens(String promocaoViagens) {
+		this.promocaoViagens = promocaoViagens;
+	}
+
+
+	public String getPromocaoPacotes() {
+		return promocaoPacotes;
+	}
+
+
+	public void setPromocaoPacotes(String promocaoPacotes) {
+		this.promocaoPacotes = promocaoPacotes;
+	}
+
+
+	public String getStatusPedido() {
+		return statusPedido;
+	}
+
+
+	public void setStatusPedido(String statusPedido) {
+		this.statusPedido = statusPedido;
+	}
+
+
+	public String getCodigoReserva() {
+		return codigoReserva;
+	}
+
+
+	public void setCodigoReserva(String codigoReserva) {
+		this.codigoReserva = codigoReserva;
+	}
+
+
+	public String getCodigoPacotes() {
+		return codigoPacotes;
+	}
+
+
+	public void setCodigoPacotes(String codigoPacotes) {
+		this.codigoPacotes = codigoPacotes;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Promocoes [id_promo=" + id_promo + ", promocaoViagens=" + promocaoViagens + ", promocaoPacotes="
+				+ promocaoPacotes + ", statusPedido=" + statusPedido + ", codigoReserva=" + codigoReserva
+				+ ", codigoPacotes=" + codigoPacotes + "]";
+	}
+	
+}

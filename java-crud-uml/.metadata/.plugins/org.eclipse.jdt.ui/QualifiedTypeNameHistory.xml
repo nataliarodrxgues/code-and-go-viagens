@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.security.Timestamp"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="com.agencia.dao.ClienteDAO"/>
+    <fullyQualifiedTypeName name="com.agencia.database.DatabaseConnection"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="com.agencia.model.Cliente"/>
+    <fullyQualifiedTypeName name="com.agencia.dao.ContatoDAO"/>
+    <fullyQualifiedTypeName name="com.agencia.model.Contato"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.MenuIO"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.ClienteIO"/>
+    <fullyQualifiedTypeName name="com.agencia.utils.Colors"/>
+    <fullyQualifiedTypeName name="java.io.PrintStream"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.ContatoIO"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.DestinosIO"/>
+    <fullyQualifiedTypeName name="com.agencia.dao.DestinosDAO"/>
+    <fullyQualifiedTypeName name="com.agencia.model.Destinos"/>
+    <fullyQualifiedTypeName name="com.agencia.dao.PedidosDAO"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.PedidosIO"/>
+    <fullyQualifiedTypeName name="com.agencia.model.Pedidos"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.PromocoesIO"/>
+    <fullyQualifiedTypeName name="com.agencia.dao.PromocoesDAO"/>
+    <fullyQualifiedTypeName name="com.agencia.model.Promocoes"/>
+    <fullyQualifiedTypeName name="com.agencia.model.Contatos"/>
+    <fullyQualifiedTypeName name="com.agencia.model.Clientes"/>
+    <fullyQualifiedTypeName name="com.agencia.dao.ClientesDAO"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.ClientesIO"/>
+    <fullyQualifiedTypeName name="com.agencia.dao.ContatosDAO"/>
+    <fullyQualifiedTypeName name="com.agencia.menus.ContatosIO"/>
+    <fullyQualifiedTypeName name="java.util.InputMismatchException"/>
+</qualifiedTypeNameHistroy>

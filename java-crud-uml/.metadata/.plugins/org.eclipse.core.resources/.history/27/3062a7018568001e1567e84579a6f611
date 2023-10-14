@@ -1,0 +1,43 @@
+package com.agencia.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.agencia.model.Cliente;
+import com.agencia.utils.Colors;
+
+public class ClienteDAO {
+	
+	private static String sql;
+	private final Connection connection;
+	public ClienteDAO(Connection connection) {
+		this.connection = connection;
+	}
+ 	
+	// CREATE
+	
+ public void createCliente(Cliente cliente) {
+	 sql = "INSERT INTO cliente cPF, Nome, Telefone, Email, Senha, DataNascimento, Estado, Cidade, Endereco, EnderecoNumero, Complemento) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			 stmt.setString(1, cliente.getCPF());
+			 stmt.setString(2, cliente.getNome());
+			 stmt.setString(3, cliente.getTelefone());
+			 stmt.setString(4, cliente.getEmail());	
+			 stmt.setString(5, cliente.getSenha());	 
+			 stmt.setString(6, cliente.getDataNascimento());
+			 stmt.setString(7, cliente.getEstado());
+			 stmt.setString(8, cliente.getCidade());
+			 stmt.setString(9, cliente.getEndereco());
+			 stmt.setString(10, cliente.getEnderecoNumero());
+			 stmt.setString(11, cliente.getComplemento());	
+		
+				stmt.executeUpdate();
+				System.out.println(Colors.GREEN + "Cliente criado com sucesso\n" + Colors.RESET + "Nome: "
+						+ cliente.getNome() + "\nCPF: " + cliente.getCPF());
+			} catch (SQLException e) {
+				System.out.println(Colors.RED + "[LOG] Nao foi possivel criar o cliente." + Colors.RESET +  "Mensagem: " + e.getMessage());
+
+			}
+		}
+}

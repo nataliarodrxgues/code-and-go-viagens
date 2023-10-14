@@ -1,0 +1,19 @@
+package com.agencia;
+
+import java.util.Scanner;
+
+import com.agencia.dao.ClienteDAO;
+import com.agencia.database.DatabaseConnection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		var connection = DatabaseConnection.createConnection();
+		ClienteDAO clienteDAO = new ClienteDAO(connection);
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		
+	}
+	}

@@ -1,0 +1,18 @@
+package com.agencia.menus;
+
+import java.io.PrintStream;
+import java.util.Scanner;
+import com.agencia.utils.Colors;
+
+public class MenuIO {
+	   public MenuIO() {
+	   }
+
+	   public static int menu(Scanner scanner) {
+	      PrintStream var10000 = System.out;
+	      String var10001 = Colors.CYAN_BOLD.get();
+	      var10000.println(var10001 + "Escolha uma opcao de 1 - 6\n" + Colors.RESET.get() + "1 - Cliente\n2 - Pedidos\n3 - Destinos\n4 - Promoções\n5 - Contato\n6 - Sair");
+	      return scanner.nextInt();
+	   }
+	}
+

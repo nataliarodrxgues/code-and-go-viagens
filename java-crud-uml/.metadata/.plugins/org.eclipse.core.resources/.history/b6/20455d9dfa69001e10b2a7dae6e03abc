@@ -1,0 +1,74 @@
+package com.agencia.menus;
+
+import java.io.PrintStream;
+import java.sql.Connection;
+import java.util.Scanner;
+
+import com.agencia.dao.ContatoDAO;
+import com.agencia.database.DatabaseConnection;
+import com.agencia.model.Contato;
+import com.agencia.utils.Colors;
+
+public class ContatoIO {
+	   static Connection connection = DatabaseConnection.createConnection();
+	   static ContatoDAO contatoDAO;
+
+	   static {
+	      contatoDAO = new ContatoDAO(connection);
+	   }
+
+	   
+	   public static int SubMenuCliente(Scanner scanner) {
+	      int option = Integer.MAX_VALUE;
+
+	      do {
+	         System.out.println("MENU CLIENTE\n1 - cadastrar\n2 - Listar\n3 - Atualizar\n4 - Deletar\n0 - Sair");
+	         option = scanner.nextInt();
+	         switch (option) {
+	            case 1:
+	               scanner.nextLine();
+	               Contato contato = new Contato();
+	               System.out.println("Assunto: ");
+	               contato.setAssunto(scanner.nextLine());
+	               System.out.println("Nome: ");
+	               contato.setNomeContato(scanner.nextLine().trim());
+	               System.out.println("Email: ");
+	               contato.setEmailContato(scanner.nextLine());
+	               System.out.println("Mensagem: ");
+	               contato.setMensagem(scanner.next().trim());     
+	               contatoDAO.createContato(contato);
+	               
+	               break;
+	            case 2:
+	                contatoDAO.readAllContatos();
+	                break;
+	             case 3:
+	                    Contato contatoAtualizado = new Contato();
+	                    System.out.println("Digite o ID do contato a ser atualizado: ");
+	                    contatoAtualizado.setId_Contato(scanner.nextInt());
+	                    scanner.nextLine();
+	                    System.out.println("Assunto: ");
+	                    contatoAtualizado.setAssunto(scanner.nextLine());
+	                    System.out.println("Nome Completo: ");
+	                    contatoAtualizado.setNomeContato(scanner.nextLine());
+	                    System.out.println("Email: ");
+	                    contatoAtualizado.setEmailContato(scanner.nextLine());
+	                    System.out.println("Mensagem: ");
+	                    contatoAtualizado.setMensagem(scanner.next().trim());
+	                    contatoDAO.updateContato(contatoAtualizado);
+	                    break;
+	            case 4:
+	                PrintStream var10000 = System.out;
+	                String var10001 = Colors.RED.get();
+	                var10000.println("Digite o ID do Contato a ser " + var10001 + "DELETADO" + Colors.RESET.get());
+	                int id_Contato = scanner.nextInt();
+	                contatoDAO.deleteContato(id_Contato);
+	                break;
+	             default:
+	                System.out.println("Digite uma opcao valida");
+	          }
+	       } while(option != 0);
+
+	       return option;
+	    }
+	 } 

@@ -1,0 +1,142 @@
+package com.agencia.model;
+
+public class Cliente {
+
+	private int id_Cliente;
+	private String CPFCliente;
+	private String NomeCliente;
+	private String TelefoneCliente;
+	private String EmailCliente;
+	private String SenhaCliente;
+	private String DataNascimento;
+	private String EstadoCliente;
+	private String CidadeCliente;
+	private String EnderecoCliente;
+	private String EnderecoNumero;
+	private String Complemento;
+	
+	public Cliente() {
+		super();
+		
+	}
+	
+	public Cliente(int id_Cliente, String cPFCliente, String nomeCliente, String telefoneCliente, String emailCliente,
+			String senhaCliente, String dataNascimento, String estadoCliente, String cidadeCliente,
+			String enderecoCliente, String enderecoNumero, String complemento) {
+		super();
+		this.id_Cliente = id_Cliente;
+		this.CPFCliente = cPFCliente;
+		this.NomeCliente = nomeCliente;
+		this.TelefoneCliente = telefoneCliente;
+		this.EmailCliente = emailCliente;
+		this.SenhaCliente = senhaCliente;
+		this.DataNascimento = dataNascimento;
+		this.EstadoCliente = estadoCliente;
+		this.CidadeCliente = cidadeCliente;
+		this.EnderecoCliente = enderecoCliente;
+		this.EnderecoNumero = enderecoNumero;
+		this.Complemento = complemento;
+	}
+
+	
+
+	public String getCPFCliente() {
+		return CPFCliente;
+	}
+
+	public void setCPFCliente(String cPFCliente) {
+		CPFCliente = cPFCliente;
+	}
+
+	public String getNomeCliente() {
+		return NomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		NomeCliente = nomeCliente;
+	}
+
+	public String getTelefoneCliente() {
+		return TelefoneCliente;
+	}
+
+	public void setTelefoneCliente(String telefoneCliente) {
+		TelefoneCliente = telefoneCliente;
+	}
+
+	public String getEmailCliente() {
+		return EmailCliente;
+	}
+
+	public void setEmailCliente(String emailCliente) {
+		EmailCliente = emailCliente;
+	}
+
+	public String getSenhaCliente() {
+		return SenhaCliente;
+	}
+
+	public void setSenhaCliente(String senhaCliente) {
+		SenhaCliente = senhaCliente;
+	}
+
+	public String getDataNascimento() {
+		return DataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		DataNascimento = dataNascimento;
+	}
+
+	public String getEstadoCliente() {
+		return EstadoCliente;
+	}
+
+	public void setEstadoCliente(String estadoCliente) {
+		EstadoCliente = estadoCliente;
+	}
+
+	public String getCidadeCliente() {
+		return CidadeCliente;
+	}
+
+	public void setCidadeCliente(String cidadeCliente) {
+		CidadeCliente = cidadeCliente;
+	}
+
+	public String getEnderecoCliente() {
+		return EnderecoCliente;
+	}
+
+	public void setEnderecoCliente(String enderecoCliente) {
+		EnderecoCliente = enderecoCliente;
+	}
+
+	public String getEnderecoNumero() {
+		return EnderecoNumero;
+	}
+
+	public void setEnderecoNumero(String enderecoNumero) {
+		EnderecoNumero = enderecoNumero;
+	}
+
+	public String getComplemento() {
+		return Complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		Complemento = complemento;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id_Cliente=" + id_Cliente + ", CPFCliente=" + CPFCliente + ", NomeCliente=" + NomeCliente
+				+ ", TelefoneCliente=" + TelefoneCliente + ", EmailCliente=" + EmailCliente + ", SenhaCliente="
+				+ SenhaCliente + ", DataNascimento=" + DataNascimento + ", EstadoCliente=" + EstadoCliente
+				+ ", CidadeCliente=" + CidadeCliente + ", EnderecoCliente=" + EnderecoCliente + ", EnderecoNumero="
+				+ EnderecoNumero + ", Complemento=" + Complemento + "]";
+	}
+
+	
+	
+	

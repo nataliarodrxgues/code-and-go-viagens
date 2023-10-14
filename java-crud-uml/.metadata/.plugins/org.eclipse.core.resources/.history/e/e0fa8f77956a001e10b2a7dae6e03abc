@@ -1,0 +1,109 @@
+package com.agencia.model;
+
+public class Cliente {
+
+	private int id_Cliente;
+	private int CPFCliente;
+	private String NomeCliente;
+	private int TelefoneCliente;
+	private String EmailCliente;
+	private int SenhaCliente; 
+	private String EnderecoCliente;
+	
+	
+	public Cliente() {
+		super();
+		
+	}
+
+
+	public Cliente(int cPFCliente, String nomeCliente, int telefoneCliente, String emailCliente,
+			int senhaCliente, String cEPCliente) {
+		super();
+		this.CPFCliente = cPFCliente;
+		this.NomeCliente = nomeCliente;
+		this.TelefoneCliente = telefoneCliente;
+		this.EmailCliente = emailCliente;
+		this.SenhaCliente = senhaCliente;
+		this.EnderecoCliente = EnderecoCliente;
+	}
+
+
+	public int getId_Cliente() {
+		return id_Cliente;
+	}
+
+
+	public void setId_Cliente(int id_Cliente) {
+		this.id_Cliente = id_Cliente;
+	}
+
+
+	public int getCPFCliente() {
+		return CPFCliente;
+	}
+
+
+	public void setCPFCliente(int string) {
+		CPFCliente = string;
+	}
+
+
+	public String getNomeCliente() {
+		return NomeCliente;
+	}
+
+
+	public void setNomeCliente(String nomeCliente) {
+		NomeCliente = nomeCliente;
+	}
+
+
+	public int getTelefoneCliente() {
+		return TelefoneCliente;
+	}
+
+
+	public void setTelefoneCliente(int telefoneCliente) {
+		TelefoneCliente = telefoneCliente;
+	}
+
+
+	public String getEmailCliente() {
+		return EmailCliente;
+	}
+
+
+	public void setEmailCliente(String emailCliente) {
+		EmailCliente = emailCliente;
+	}
+
+
+	public int getSenhaCliente() {
+		return SenhaCliente;
+	}
+
+
+	public void setSenhaCliente(int senhaCliente) {
+		SenhaCliente = senhaCliente;
+	}
+
+
+	public String getEnderecoCliente() {
+		return EnderecoCliente;
+	}
+
+
+	public void setEnderecoCliente(String enderecoCliente) {
+		EnderecoCliente = enderecoCliente;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Cliente [id_Cliente=" + id_Cliente + ", CPFCliente=" + CPFCliente + ", NomeCliente=" + NomeCliente
+				+ ", TelefoneCliente=" + TelefoneCliente + ", EmailCliente=" + EmailCliente + ", SenhaCliente="
+				+ SenhaCliente + ", EnderecoCliente=" + EnderecoCliente + "]";
+	}
+}
+
